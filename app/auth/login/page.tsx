@@ -11,10 +11,10 @@ import { TLoginSchema, loginSchema } from "@/lib/validation/auth";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-interface LoginFormProps {
+type LoginFormProps = {
   variant: string;
   toggleVariant: () => void;
-}
+};
 
 const LoginForm: React.FC<LoginFormProps> = ({ variant, toggleVariant }) => {
   const router = useRouter();
