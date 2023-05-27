@@ -11,33 +11,23 @@ import { TLoginSchema, loginSchema } from "@/lib/validation/auth";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-interface LoginFormProps {
-  variant: string;
-  toggleVariant: () => void;
-}
-
 const LoginForm = ({ variant, toggleVariant }: any) => {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [checked, setChecked] = useState<boolean>(false);
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
   } = useForm<TLoginSchema>({
     resolver: zodResolver(loginSchema),
   });
 
   const onSubmit = async (data: TLoginSchema) => {
-    setIsLoading(true);
-
     await signIn("credentials", {
       ...data,
       redirect: false,
     }).then((res) => {
-      setIsLoading(false);
-
       if (res?.ok) {
         toast.success("Logged in.");
 
@@ -137,7 +127,7 @@ const LoginForm = ({ variant, toggleVariant }: any) => {
         </div>
       </form>
       <h3 className="font-extralight lg:text-xl md:text-lg text-[#D7D7D7] my-5">
-        Don't have an account ?{" "}
+        Don&apos;t have an account ?&nbsp;
         <span
           className="text-rose font-semibold cursor-pointer"
           onClick={() => toggleVariant()}

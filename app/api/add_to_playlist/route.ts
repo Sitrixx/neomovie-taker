@@ -15,7 +15,7 @@ export async function POST(request: Request) {
     return NextResponse.error();
   }
 
-  let playlist = [...(playlistMovies || [])];
+  const playlist = [...(playlistMovies || [])];
 
   if (!playlist.includes(movieId)) {
     playlist.push(movieId);

@@ -33,7 +33,7 @@ const addToPlaylist = async (movieId: string, playlistId: string) => {
         toast.success("Movie successfully added to playlist");
       }
     })
-    .catch((err) => {
+    .catch(() => {
       toast.error("Movie not added to playlist. Try again later.");
     });
 };

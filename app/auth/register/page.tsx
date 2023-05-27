@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import SocialAuthButton from "@/app/components/buttons/SocialAuthButton";
 import { registerSchema, TRegisterSchema } from "@/lib/validation/auth";
@@ -9,17 +8,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-
-interface RegisterFormProps {
-  variant: string;
-  toggleVariant: () => void;
-}
 
 const RegisterForm = ({ variant, toggleVariant }: any) => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -29,14 +19,11 @@ const RegisterForm = ({ variant, toggleVariant }: any) => {
   });
 
   const onSubmit = async (data: TRegisterSchema) => {
-    setIsLoading(true);
-
     await axios
       .post("/api/register", data)
       .then((res) => {
         if (res.status === 200) {
           toast.success("Registered");
-          setIsLoading(false);
         }
       })
       .catch((error: Error) => {

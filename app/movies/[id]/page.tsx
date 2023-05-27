@@ -74,8 +74,12 @@ export default async function Home({ params }: { params: { id: string } }) {
                 CAST :
               </h1>
               <div className="grid grid-cols-cast gap-3 w-10/12">
-                {credits.cast.slice(0, 9).map((item: Cast) => {
-                  return <h1 className="font-light text-white">{item.name}</h1>;
+                {credits.cast.slice(0, 9).map((item: Cast, index: number) => {
+                  return (
+                    <h1 className="font-light text-white" key={index}>
+                      {item.name}
+                    </h1>
+                  );
                 })}
               </div>
             </div>

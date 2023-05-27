@@ -20,7 +20,7 @@ export async function POST(request: Request, { params }: { params: IParams }) {
     throw new Error("Invalid ID");
   }
 
-  let watchedMovies = [...(currentUser.watchedMovies || [])];
+  const watchedMovies = [...(currentUser.watchedMovies || [])];
 
   watchedMovies.push(movieId);
 

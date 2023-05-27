@@ -7,7 +7,6 @@ import clsx from "clsx";
 import { IoIosArrowDown } from "react-icons/io";
 import AddPlaylistButton from "./buttons/AddPlaylistButton";
 import PlaylistsDisplayer from "./PlaylistsDisplayer";
-import { User } from "@/types/userType";
 import { Playlists } from "@/types/playlistType";
 
 interface ProfilePageProps {

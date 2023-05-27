@@ -32,7 +32,7 @@ const AddPlaylistButton = () => {
           router.refresh();
         }
       })
-      .catch((err) => {
+      .catch(() => {
         toast.error("Something went wrong. Try again.");
       });
   };

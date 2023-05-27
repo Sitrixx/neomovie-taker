@@ -23,7 +23,7 @@ export async function POST(request: Request) {
   return NextResponse.json(newPlaylist);
 }
 
-export async function DELETE(request: Request) {
+export async function DELETE() {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {

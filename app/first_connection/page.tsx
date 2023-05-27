@@ -3,7 +3,6 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { genres } from "@/constants/genres";
-// import SelectGenreButton from "../components/buttons/SelectGenreButton";
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -75,7 +74,6 @@ const FirstConnection = () => {
             >
               {name}
             </div>
-            // <SelectGenreButton key={id} id={id} name={name} onClick={handleSelectedGenre(name)} />
           ))}
         </div>
         <div className="max-w-full flex items-center justify-center m-8 lg:m-12">
