@@ -16,10 +16,7 @@ interface RegisterFormProps {
   toggleVariant: () => void;
 }
 
-const RegisterForm: React.FC<RegisterFormProps> = ({
-  variant,
-  toggleVariant,
-}) => {
+const RegisterForm = ({ variant, toggleVariant }: any) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
 

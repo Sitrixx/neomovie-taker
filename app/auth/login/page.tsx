@@ -11,12 +11,12 @@ import { TLoginSchema, loginSchema } from "@/lib/validation/auth";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-type LoginFormProps = {
+interface LoginFormProps {
   variant: string;
   toggleVariant: () => void;
-};
+}
 
-const LoginForm: React.FC<LoginFormProps> = ({ variant, toggleVariant }) => {
+const LoginForm = ({ variant, toggleVariant }: any) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [checked, setChecked] = useState<boolean>(false);

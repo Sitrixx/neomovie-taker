@@ -14,15 +14,17 @@ export default async function Home() {
   const watchedMovies = await getWatchedMovies();
   const playlists = await getPlaylists();
 
+  if (!likedMovies || !watchedMovies || !currentUser || !playlists) return [];
+
   const likedGenre: { id: string; name: string } | undefined = genres.find(
     (genre) => genre.id === currentUser?.genre
   );
 
   const detailsLikedMovies = await Promise.all(
-    likedMovies!.map((item: string) => getMovieDetails(item))
+    likedMovies && likedMovies.map((item: string) => getMovieDetails(item))
   );
   const detailsWatchedMovies = await Promise.all(
-    watchedMovies!.map((item: string) => getMovieDetails(item))
+    watchedMovies && watchedMovies.map((item: string) => getMovieDetails(item))
   );
 
   return (

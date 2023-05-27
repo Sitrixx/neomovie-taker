@@ -11,7 +11,7 @@ import { User } from "@/types/userType";
 import { Playlists } from "@/types/playlistType";
 
 interface ProfilePageProps {
-  currentUser: User;
+  currentUser: any;
   likedGenre: string;
   likedMovies: String[];
   watchedMovies: String[];
@@ -23,8 +23,6 @@ type OptionsMappingProps = {
   watched: String[];
   playlists: Playlists;
 };
-
-type OptionsKey = keyof OptionsMappingProps;
 
 const ProfilePage: React.FC<ProfilePageProps> = ({
   currentUser,

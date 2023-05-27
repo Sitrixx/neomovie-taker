@@ -6,7 +6,7 @@ import LoginForm from "./login/page";
 import RegisterForm from "./register/page";
 import Link from "next/link";
 
-type Variant = "LOGIN" | "REGISTER";
+type Variant = string;
 
 export default function Home() {
   const [variant, setVariant] = useState<Variant>("LOGIN");

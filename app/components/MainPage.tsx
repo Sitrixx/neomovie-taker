@@ -8,10 +8,10 @@ import { years } from "@/constants/years";
 import { languages } from "@/constants/languages";
 import Navbar from "./navbar/Navbar";
 import { IoIosArrowDown } from "react-icons/io";
-import { DataFromMovieFetch, Movie } from "@/types/movieType";
+import { DataFromMovieFetch, Movie, MovieArray } from "@/types/movieType";
 
 interface MainProps {
-  baseMovies: [];
+  baseMovies: MovieArray;
   API_KEY: string;
 }
 
@@ -22,7 +22,7 @@ interface Filters {
 }
 
 const MainPage: React.FC<MainProps> = ({ baseMovies, API_KEY }) => {
-  const [stockMovies, setStockedMovies] = useState<Movie[]>(baseMovies);
+  const [stockMovies, setStockedMovies] = useState<MovieArray>(baseMovies);
   const [filters, setFilters] = useState<Filters>({
     year: "",
     language: "",
@@ -134,9 +134,10 @@ const MainPage: React.FC<MainProps> = ({ baseMovies, API_KEY }) => {
         </div>
       </div>
       <div className="mx-4 my-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 lg:gap-10 gap-8">
-        {stockMovies.map((item: Movie, index) => (
-          <MovieCard id={item.id} poster={item.poster_path} key={index} />
-        ))}
+        {stockMovies &&
+          stockMovies.map((item: Movie, index: number) => (
+            <MovieCard id={item.id} poster={item.poster_path} key={index} />
+          ))}
       </div>
       <div className="my-8 md:my-6 mx-4 p-4"></div>
     </div>
