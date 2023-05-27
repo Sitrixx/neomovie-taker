@@ -2,9 +2,10 @@
 
 import clsx from "clsx";
 import MovieCard from "./movies/MovieCard";
+import { Movie, MovieArray } from "@/types/movieType";
 
 interface DisplayPlaylistsMovies {
-  detailsPlaylistsMovies: any;
+  detailsPlaylistsMovies: MovieArray;
 }
 
 const DisplayPlaylistsMovies: React.FC<DisplayPlaylistsMovies> = ({
@@ -21,7 +22,7 @@ const DisplayPlaylistsMovies: React.FC<DisplayPlaylistsMovies> = ({
         )}
       >
         {stockMovies.length !== 0 ? (
-          stockMovies.map((item: any, index: any) => (
+          stockMovies.map((item: Movie, index: number) => (
             <MovieCard id={item.id} poster={item.poster_path} key={index} />
           ))
         ) : (

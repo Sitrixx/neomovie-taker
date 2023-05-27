@@ -15,6 +15,7 @@ import {
   getWatchedMovieById,
 } from "@/app/actions/getMovieStatus";
 import { getPlaylists } from "@/app/actions/getProfileInfos";
+import { Cast, Language, Video } from "@/types/movieType";
 
 export default async function Home({ params }: { params: { id: string } }) {
   const details = await getMovieDetails(params.id);
@@ -27,7 +28,7 @@ export default async function Home({ params }: { params: { id: string } }) {
   let targetLanguage = null;
   const targetIso = details.original_language;
 
-  details.spoken_languages.map((language: any) => {
+  details.spoken_languages.map((language: Language) => {
     if (language.iso_639_1 === targetIso) {
       targetLanguage = language.english_name;
     }
@@ -36,8 +37,9 @@ export default async function Home({ params }: { params: { id: string } }) {
   const backdrop =
     "https://image.tmdb.org/t/p/original" + details.backdrop_path;
   const trailerObject = video.results.find(
-    (item: any) => item.type === "Trailer"
+    (item: Video) => item.type === "Trailer"
   );
+
   const trailer = trailerObject ? trailerObject.key : null;
 
   return (
@@ -72,7 +74,7 @@ export default async function Home({ params }: { params: { id: string } }) {
                 CAST :
               </h1>
               <div className="grid grid-cols-cast gap-3 w-10/12">
-                {credits.cast.slice(0, 9).map((item: any) => {
+                {credits.cast.slice(0, 9).map((item: Cast) => {
                   return <h1 className="font-light text-white">{item.name}</h1>;
                 })}
               </div>

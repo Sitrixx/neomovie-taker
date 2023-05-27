@@ -4,20 +4,26 @@ import axios from "axios";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaPlus } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
+
+interface FormData {
+  name: string;
+}
 
 const AddPlaylistButton = () => {
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = async (data: any) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const formData = data as FormData;
+
     await axios
       .post("/api/add_playlist", {
-        name: data.name,
+        name: formData.name,
       })
       .then((res) => {
         if (res.status === 200) {

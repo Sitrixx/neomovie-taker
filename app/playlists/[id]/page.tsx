@@ -2,11 +2,12 @@ import { getMovieDetails } from "@/app/actions/getMovies";
 import { getPlaylistsMoviesById } from "@/app/actions/getPlaylistsMoviesById";
 import DisplayPlaylistsMovies from "@/app/components/DisplayPlaylistsMovies";
 import Navbar from "@/app/components/navbar/Navbar";
+import { MovieArray } from "@/types/movieType";
 
 export default async function Home({ params }: { params: { id: string } }) {
   const playlistMovies = await getPlaylistsMoviesById(params.id);
 
-  const detailsPlaylistsMovies = await Promise.all(
+  const detailsPlaylistsMovies: MovieArray = await Promise.all(
     playlistMovies!.map((item: string) => getMovieDetails(item))
   );
 

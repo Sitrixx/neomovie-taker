@@ -1,5 +1,6 @@
 "use client";
 
+import { Playlist, Playlists } from "@/types/playlistType";
 import axios from "axios";
 import clsx from "clsx";
 import { useState } from "react";
@@ -22,7 +23,7 @@ const addToProfile = async (
 };
 
 const addToPlaylist = async (movieId: string, playlistId: string) => {
-  axios
+  await axios
     .post(`/api/add_to_playlist`, {
       movieId: movieId,
       playlistId: playlistId,
@@ -39,7 +40,7 @@ const addToPlaylist = async (movieId: string, playlistId: string) => {
 
 interface AddingToPlaylistProps {
   movieId: string;
-  playlists: any;
+  playlists: Playlists;
 }
 
 interface AddingButtonEyeProps {
@@ -107,9 +108,9 @@ export const PlusButton: React.FC<AddingToPlaylistProps> = ({
   playlists,
 }) => {
   const [showModal, setShowModal] = useState(false);
-  const [selectedPlaylists, setSelectedPlaylists] = useState<Array<String>>([]);
+  const [selectedPlaylists, setSelectedPlaylists] = useState<string[]>([]);
 
-  const handleCheckboxChange = (playlistId: any) => {
+  const handleCheckboxChange = (playlistId: string) => {
     if (selectedPlaylists.includes(playlistId)) {
       setSelectedPlaylists(selectedPlaylists.filter((id) => id !== playlistId));
     } else {
@@ -119,7 +120,7 @@ export const PlusButton: React.FC<AddingToPlaylistProps> = ({
 
   const handleAddToPlaylist = async (movieId: string) => {
     await Promise.all(
-      selectedPlaylists.map((playlistId: any) => {
+      selectedPlaylists.map((playlistId: string) => {
         addToPlaylist(movieId, playlistId);
       })
     );
@@ -147,7 +148,7 @@ export const PlusButton: React.FC<AddingToPlaylistProps> = ({
           <div className="absolute flex flex-col text-white px-4 py-8 items-center justify-between top-1/2 left-1/2 rounded-xl -translate-x-1/2 -translate-y-1/2 z-20 bg-[#252636] w-4/5 h-1/2 md:w-2/4 md:h-7/12 lg:w-2/5 lg:h-3/6 xl:w-3/12 xl:h-3/5">
             <h1 className="text-xl">Choose a playlist</h1>
             <div className="h-3/4 overflow-y-scroll w-full space-y-3 my-6 p-4 overflow-x-hidden no-scrollbar">
-              {playlists.map((item: any, index: number) => (
+              {playlists.map((item: Playlist, index: number) => (
                 <div
                   key={index}
                   className="px-4 py-3 flex flex-row justify-between items-center w-full bg-transparent rounded-xl border-2 border-[#F692FF]"

@@ -1,23 +1,29 @@
 "use client";
 
 import MovieCard from "./movies/MovieCard";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import axios from "axios";
 import { genres } from "@/constants/genres";
 import { years } from "@/constants/years";
 import { languages } from "@/constants/languages";
 import Navbar from "./navbar/Navbar";
 import { IoIosArrowDown } from "react-icons/io";
+import { DataFromMovieFetch, Movie } from "@/types/movieType";
 
 interface MainProps {
   baseMovies: [];
   API_KEY: string;
-  currentUser: any;
+}
+
+interface Filters {
+  year: string;
+  language: string;
+  genre: string;
 }
 
 const MainPage: React.FC<MainProps> = ({ baseMovies, API_KEY }) => {
-  const [stockMovies, setStockedMovies] = useState<[]>(baseMovies);
-  const [filters, setFilters] = useState({
+  const [stockMovies, setStockedMovies] = useState<Movie[]>(baseMovies);
+  const [filters, setFilters] = useState<Filters>({
     year: "",
     language: "",
     genre: "",
@@ -36,7 +42,7 @@ const MainPage: React.FC<MainProps> = ({ baseMovies, API_KEY }) => {
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${event.target.value}&page=1`
       )
-      .then((data: any) => {
+      .then((data: DataFromMovieFetch) => {
         setStockedMovies(event.target.value ? data.data.results : baseMovies);
       });
   };
@@ -48,7 +54,7 @@ const MainPage: React.FC<MainProps> = ({ baseMovies, API_KEY }) => {
       .get(
         `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=1&primary_release_year=${year}&language=${language}&with_genres=${genre}`
       )
-      .then((data: any) => {
+      .then((data: DataFromMovieFetch) => {
         setStockedMovies(
           year || language || genre ? data?.data.results : baseMovies
         );
@@ -128,7 +134,7 @@ const MainPage: React.FC<MainProps> = ({ baseMovies, API_KEY }) => {
         </div>
       </div>
       <div className="mx-4 my-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 lg:gap-10 gap-8">
-        {stockMovies.map((item: any, index) => (
+        {stockMovies.map((item: Movie, index) => (
           <MovieCard id={item.id} poster={item.poster_path} key={index} />
         ))}
       </div>

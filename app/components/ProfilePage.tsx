@@ -4,17 +4,27 @@ import { useState } from "react";
 import Navbar from "../components/navbar/Navbar";
 import MovieCard from "./movies/MovieCard";
 import clsx from "clsx";
-import { IoIosArrowDown, IoMdClose } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 import AddPlaylistButton from "./buttons/AddPlaylistButton";
 import PlaylistsDisplayer from "./PlaylistsDisplayer";
+import { User } from "@/types/userType";
+import { Playlists } from "@/types/playlistType";
 
 interface ProfilePageProps {
-  currentUser: any;
+  currentUser: User;
   likedGenre: string;
-  likedMovies: any;
-  watchedMovies: any;
-  playlists: any;
+  likedMovies: String[];
+  watchedMovies: String[];
+  playlists: Playlists;
 }
+
+type OptionsMappingProps = {
+  liked: String[];
+  watched: String[];
+  playlists: Playlists;
+};
+
+type OptionsKey = keyof OptionsMappingProps;
 
 const ProfilePage: React.FC<ProfilePageProps> = ({
   currentUser,
@@ -23,10 +33,10 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
   watchedMovies,
   playlists,
 }) => {
-  const [selectedOption, setSelectedOption] = useState("liked");
+  const [selectedOption, setSelectedOption] = useState<string>("liked");
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const newOption = event.target.value;
+    const newOption: string = event.target.value;
     setSelectedOption(newOption);
   };
 
@@ -34,13 +44,14 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
     setSelectedOption(option);
   };
 
-  const optionsMapping: any = {
+  const optionsMapping: OptionsMappingProps = {
     liked: likedMovies,
     watched: watchedMovies,
     playlists: playlists,
   };
 
-  const stockMovies = optionsMapping[selectedOption];
+  const stockMovies =
+    optionsMapping[selectedOption as keyof OptionsMappingProps];
 
   return (
     <div className="my-8 px-6 md:px-14 w-full max-w-screen-2xl mx-auto relative">
@@ -109,7 +120,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
         )}
       >
         {stockMovies.length !== 0 ? (
-          stockMovies.map((item: any, index: any) =>
+          stockMovies.map((item: any, index: number) =>
             stockMovies === playlists ? (
               <PlaylistsDisplayer id={item.id} name={item.name} key={index} />
             ) : (
