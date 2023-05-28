@@ -27,7 +27,7 @@ const AddPlaylistButton = () => {
       })
       .then((res) => {
         if (res.status === 200) {
-          toast.success("Playlist added.");
+          toast.success("Playlist successfully added.");
           setShowModal((prev) => !prev);
           router.refresh();
         }

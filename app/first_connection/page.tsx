@@ -27,11 +27,11 @@ const FirstConnection = () => {
       .then((res) => {
         if (res.status === 200) {
           localStorage.setItem("liked_genre", genre);
-          toast.success("Registered");
+          toast.success("Genre successfully registered.");
         }
       })
       .catch((error: Error) => {
-        toast.error("Can't register.");
+        toast.error("Can't register genre. Please try again.");
         console.log(error);
       })
       .finally(() => {

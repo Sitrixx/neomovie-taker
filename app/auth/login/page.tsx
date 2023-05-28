@@ -29,7 +29,7 @@ const LoginForm = ({ variant, toggleVariant }: any) => {
       redirect: false,
     }).then((res) => {
       if (res?.ok) {
-        toast.success("Logged in.");
+        toast.success("Successfully logged in.");
 
         axios
           .post("/api/login", data)
@@ -39,7 +39,7 @@ const LoginForm = ({ variant, toggleVariant }: any) => {
             } else router.push("/home");
           })
           .catch((error: Error) => {
-            toast.error("Can't register.");
+            toast.error("Do you have an account? Please try again.");
             console.log(error);
           });
       }

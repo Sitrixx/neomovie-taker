@@ -23,11 +23,11 @@ const RegisterForm = ({ variant, toggleVariant }: any) => {
       .post("/api/register", data)
       .then((res) => {
         if (res.status === 200) {
-          toast.success("Registered");
+          toast.success("Successfully registered.");
         }
       })
       .catch((error: Error) => {
-        toast.error("Can't register.");
+        toast.error("Cannot register. Please try again.");
         console.log(error);
       })
       .finally(() => {
