@@ -9,7 +9,7 @@ import Link from "next/link";
 type Variant = string;
 
 export default function Home() {
-  const [variant, setVariant] = useState<Variant>("LOGIN");
+  const [variant, setVariant] = useState<Variant>("REGISTER");
 
   const toggleVariant = useCallback(() => {
     if (variant === "LOGIN") {
@@ -36,7 +36,7 @@ export default function Home() {
         </div>
         <div className="space-y-6 flex flex-col items-center justify-center">
           <div className="max-w-fit mx-auto px-4 sm:max-w-md md:max-w-lg lg:max-w-fit lg:mx-0 lg:px-5">
-            <h1 className="mt-4 text-center text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-medium tracking-tight text-white">
+            <h1 className="mt-4 text-center text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white">
               <span className="text-rose font-semibold">
                 {variant === "LOGIN" ? "Connect to" : "Create"}
               </span>{" "}
@@ -55,7 +55,7 @@ export default function Home() {
                 <span className="font-semibold">enter</span> your details.
               </h1>
             ) : (
-              <h1>
+              <h1 className="text-center">
                 Already have an account ?{" "}
                 <span
                   className="text-rose font-semibold cursor-pointer"

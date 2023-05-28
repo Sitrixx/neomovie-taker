@@ -8,6 +8,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import AddPlaylistButton from "./buttons/AddPlaylistButton";
 import PlaylistsDisplayer from "./PlaylistsDisplayer";
 import { Playlists } from "@/types/playlistType";
+import Image from "next/image";
+import profile from "@/public/user-profile.png";
 
 interface ProfilePageProps {
   currentUser: any;
@@ -54,7 +56,9 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
     <div className="my-8 px-6 md:px-14 w-full max-w-screen-2xl mx-auto relative">
       <Navbar searchBar={false} />
       <div className="flex flex-col justify-start items-center md:flex-row w-full py-5 px-4 md:py-8 lg:px-5 lg:py-14 space-y-6 md:space-y-0 md:space-x-10">
-        <div className="w-24 h-24 md:w-28 md:h-28 lg:h-32 lg:w-32 xl:h-40 xl:w-40 rounded-full bg-white border-2 border-[#F692FF]" />
+        <div className="w-24 h-24 md:w-28 md:h-28 lg:h-32 lg:w-32 xl:h-40 xl:w-40 rounded-full bg-white border-2 border-[#F692FF]">
+          <Image src={profile} alt="logo-profile" />
+        </div>
         <div className="flex flex-col justify-center items-center md:items-start">
           <h1 className="text-4xl md:text-6xl font-bebas text-[#F692FF]">
             {currentUser.name}

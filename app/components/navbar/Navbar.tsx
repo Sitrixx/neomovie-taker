@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-// import { useRouter } from "next/navigation";
+import profile from "@/public/user-profile.png";
 
 type ChangeHandler = (
   event: React.ChangeEvent<HTMLInputElement>
@@ -27,9 +28,11 @@ const Navbar: React.FC<NavbarProps> = ({ searchBar, handleChange }) => {
           />
         )}
         <a
-          className="bg-gray-200 w-8 h-8 lg:w-10 lg:h-10 rounded-full cursor-pointer"
+          className="bg-gray-200 w-8 h-8 lg:w-10 lg:h-10 rounded-full cursor-pointer border-[1px] border-[#F692FF]"
           href={"/profile"}
-        ></a>
+        >
+          <Image src={profile} alt="logo-profile" />
+        </a>
       </div>
     </nav>
   );
